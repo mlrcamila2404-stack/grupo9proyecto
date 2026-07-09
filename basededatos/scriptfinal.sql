@@ -11,7 +11,7 @@ CREATE TABLE usuarios (
     password_hash VARCHAR(100)
 );
 
--- Tabla pruebas
+
 CREATE TABLE pruebas (
     id_prueba INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE pruebas (
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabla secciones
+
 CREATE TABLE secciones (
     id_seccion INT AUTO_INCREMENT PRIMARY KEY,
     id_prueba INT NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE secciones (
         REFERENCES pruebas(id_prueba)
 );
 
--- Tabla recursos
+
 CREATE TABLE recursos (
     id_recurso INT AUTO_INCREMENT PRIMARY KEY,
     id_seccion INT NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE recursos (
         REFERENCES secciones(id_seccion)
 );
 
--- Tabla preguntas
+
 CREATE TABLE preguntas (
     id_pregunta INT AUTO_INCREMENT PRIMARY KEY,
     id_recurso INT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE preguntas (
         REFERENCES recursos(id_recurso)
 );
 
--- Tabla intentos
+
 CREATE TABLE intentos (
     id_intento INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE intentos (
         REFERENCES pruebas(id_prueba)
 );
 
--- Tabla opciones_texto
+
 CREATE TABLE opciones_texto (
     id_opcion INT AUTO_INCREMENT PRIMARY KEY,
     id_pregunta INT NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE opciones_texto (
         REFERENCES preguntas(id_pregunta)
 );
 
--- Tabla respuestas_usuario
+
 CREATE TABLE respuestas_usuario (
     id_respuesta INT AUTO_INCREMENT PRIMARY KEY,
     id_intento INT NOT NULL,
