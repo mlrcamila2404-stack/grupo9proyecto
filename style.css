@@ -1,8 +1,91 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: montserrat;
-    background: #F5EAD0;
-    }
+  background-color: #4F46E5;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
 
-    
+.card {
+  background-color: #FFC857;
+  border: none;
+  border-radius: 10px;
+}
+
+.btn-practfy {
+  background-color: #3A86FF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-practfy:hover {
+  background-color: #06B6D4;
+  color: #fff;
+}
+
+input.form-control {
+  border-radius: 5px;
+}
+
+h2 {
+  color: #3A86FF;
+}
+/*hasta aqui es para las 2 pantallas de login y rgistro*/
+.container {
+  background-color: #FFC857;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+h1, h2, h3 {
+  color: #3A86FF;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #000;
+}
+
+.form-check-label {
+  color: #000;
+}
+
+input.form-control {
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn-practfy {
+  background-color: #3A86FF;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-practfy:hover {
+  background-color: #06B6D4;
+  color: #fff;
+}
+
+a {
+  color: #000;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #06B6D4;
+}
+
+.form-check {
+  margin-bottom: 15px;
+  }
+
+  img{
+    margin-bottom: 20px;
+  }
+
+  form{
+    margin-bottom: 25px;
+  }
