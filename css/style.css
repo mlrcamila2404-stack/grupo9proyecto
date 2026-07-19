@@ -27,7 +27,7 @@ input.form-control {
 }
 
 h2 {
-  color: #3A86FF;
+  color: #000000;
 }
 /*hasta aqui es para las 2 pantallas de login y rgistro*/
 .container {
@@ -38,7 +38,7 @@ h2 {
 }
 
 h1, h2, h3 {
-  color: #3A86FF;
+  color: #000000;
   margin-bottom: 20px;
 }
 
@@ -88,4 +88,16 @@ a:hover {
 
   form{
     margin-bottom: 25px;
+  }
+
+  .purpleSelect{
+    color: #4f46e5
+  }
+
+  .blueSelect{
+    color: #3b88f2 
+  }
+
+  .greySelect{
+    color: #737373
   }
