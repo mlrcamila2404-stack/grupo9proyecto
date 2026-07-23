@@ -1,32 +1,107 @@
-body {
-  background-color: white;
-  color: #fff;
-  font-family: 'Poppins', sans-serif;
-}
 
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(160deg, #FFF4D9 0%, #F7F5F0 55%);
+  color: #16213E;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
 .card {
   background-color: #FFC857;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
 }
-
+ 
+h2 {
+  color: #16213E;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 10px;
+}
+ 
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 4px;
+  border-radius: 4px;
+  background-color: #3A86FF;
+}
+ 
+.field {
+  margin-bottom: 14px;
+}
+ 
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #16213E;
+  margin-bottom: 4px;
+}
+ 
+input.form-control {
+  border: 1px solid rgba(22, 33, 62, 0.15);
+  border-radius: 8px;
+  padding: 0.55rem 0.8rem;
+  background-color: #FFFDF5;
+}
+ 
+input.form-control:focus {
+  border-color: #3A86FF;
+  box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
+}
+ 
 .btn-practfy {
   background-color: #3A86FF;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
 }
-
+ 
 .btn-practfy:hover {
   background-color: #06B6D4;
   color: #fff;
 }
-
-input.form-control {
-  border-radius: 5px;
+ 
+.switch-link {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #16213E;
+}
+ 
+.switch-link a {
+  color: #3A86FF;
+  font-weight: 600;
+  text-decoration: none;
+}
+ 
+.switch-link a:hover {
+  text-decoration: underline;
 }
 
-h2 {
-  color: #000000;
+.wordmark {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 18px;
 }
-/*hasta aqui es para las 2 pantallas de login y rgistro*/
+
+.w-blue {
+  color: #3A86FF;
+}
+
+.w-purple {
+  color: #7C3AED;
+}
