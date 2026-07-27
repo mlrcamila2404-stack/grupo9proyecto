@@ -24,4 +24,4 @@ if ($usuario && password_verify($password, $usuario['password_hash'])) {
     die("Correo o contraseña incorrectos.");
 }
 
-header("Location: examenes.html");
+header("Location: ../examenes.html");

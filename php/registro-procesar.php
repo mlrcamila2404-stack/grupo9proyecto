@@ -3,7 +3,7 @@ require 'db.php';
  
 $nombre    = trim($_POST['nombre'] ?? '');
 $apellido  = trim($_POST['apellido'] ?? '');
-$correo    = trim($_POST['email'] ?? '');
+$correo    = trim($_POST['correo'] ?? '');
 $password  = $_POST['password'] ?? '';
 $password2 = $_POST['password2'] ?? '';
  
@@ -33,5 +33,5 @@ $stmt = $pdo->prepare(
 );
 $stmt->execute([$nombre, $apellido, $correo, $password_hash]);
  
-header("Location: login.html");
+header("Location: ../login.html");
 exit;
