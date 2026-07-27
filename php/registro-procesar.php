@@ -12,11 +12,11 @@ if ($nombre === '' || $apellido === '' || $correo === '' || $password === '') {
 }
  
 if ($password !== $password2) {
-    die("Las contraseñas no coinciden.");
+    die("Las contrasenas no coinciden.");
 }
  
 if (strlen($password) < 6) {
-    die("La contraseña debe tener al menos 6 caracteres.");
+    die("La contrasena debe tener al menos 6 caracteres.");
 }
  
 $check = $pdo->prepare("SELECT id_usuario FROM usuarios WHERE correo = ?");
