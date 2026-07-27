@@ -40,10 +40,10 @@
       <h2>Login</h2>
       <p class="subtitle">Enter your details to continue practicing.</p>
  
-      <form>
+      <form action="php/login-procesar.php" method="POST">
         <div class="field">
-          <label for="usuario">Username</label>
-          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Your username" autocomplete="username" required>
+          <label for="correo">Email Address</label>
+          <input type="email" id="correo" name="correo" class="form-control" placeholder="your.email@example.com" autocomplete="email" required>
         </div>
  
         <div class="field">
@@ -51,7 +51,7 @@
           <input type="password" id="password" name="password" class="form-control" placeholder="Your password" autocomplete="current-password" required>
         </div>
  
-        <button type="submit" class="btn-practfy"> <a href="examenes.html">Login</a></button>
+        <button type="submit" class="btn-practfy">Login</button>
  
         <div class="switch-link">
           Don't have an account? <a href="registro.html">Sign Up</a>
