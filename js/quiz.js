@@ -95,3 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Espera a que la página cargue
+    window.addEventListener("load", function() {
+      const audio = document.getElementById("miAudio");
+      // Intenta reproducir automáticamente
+      audio.play().catch(error => {
+        console.log("El navegador bloqueó la reproducción automática:", error);
+      });
+    });
