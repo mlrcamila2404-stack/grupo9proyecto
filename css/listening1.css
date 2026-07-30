@@ -1,63 +1,133 @@
 :root {
-  --primary: #4361ee;
-  --purple: #7209b7;
-  --card-bg: #ffffff;
-  --card-shadow: rgba(0,0,0,0.08);
+  --ink: #16213E;
+  --ink-soft: rgba(22, 33, 62, 0.65);
+  --cream: #F7F5F0;
+  --yellow: #FFC857;
+  --blue: #3A86FF;
+  --purple: #7C3AED;
+  --cyan: #06B6D4;
+  --border: #E8E2D3;
 }
-
+ 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9fb;
-  padding-top: 60px;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--cream);
+  color: var(--ink);
 }
-
+ 
+.wordmark-nav {
+  font-weight: 800;
+  font-size: 1.35rem;
+  text-decoration: none;
+}
+ 
+.wordmark-nav .w-blue { color: var(--blue); }
+.wordmark-nav .w-purple { color: var(--purple); }
+ 
+.navbar .nav-link {
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+ 
+.page-header {
+  padding-top: 100px;
+}
+ 
 h1 {
-  color: var(--primary);
+  color: var(--ink);
+  font-weight: 800;
+}
+ 
+.exam-section,
+.container.my-4.border.rounded.bg-light {
+  background: linear-gradient(135deg, #FFF4D9 0%, var(--cream) 100%) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+  padding: 1.5rem !important;
+}
+ 
+.exam-section h3,
+.container.my-4.border.rounded.bg-light h3 {
+  color: var(--blue) !important;
   font-weight: 700;
 }
-
-.exam-section {
-  background: linear-gradient(135deg, #f0f4ff 0%, #f8f0ff 100%);
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+ 
+.quiz-progress {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
 }
-
-.exam-section h3 {
-  color: var(--primary);
+ 
+.quiz-progress-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
   font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
 }
-
+ 
+.progress-track {
+  height: 8px;
+  border-radius: 6px;
+  background-color: #EFEAE0;
+  overflow: hidden;
+}
+ 
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  width: 0%;
+  transition: width 0.3s ease;
+}
+ 
 .question-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px var(--card-shadow);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
   padding: 1.5rem;
-  margin-bottom: 2rem;
-  transition: transform .2s;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-
+ 
 .question-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px -18px rgba(22, 33, 62, 0.25);
 }
-
+ 
+.question-card.answered {
+  border-color: var(--blue);
+}
+ 
 .question-card img {
-  border-radius: 8px;
+  border-radius: 10px;
   margin-bottom: 1rem;
 }
-
+ 
+.form-check {
+  padding: 8px 0 8px 2rem;
+}
+ 
 .form-check-label {
   font-size: 0.95rem;
 }
-
-.btn-primary {
-  background-color: var(--primary);
-  border: none;
-  border-radius: 30px;
-  padding: 0.6rem 1.2rem;
-  font-weight: 600;
+ 
+.form-check-input:checked {
+  background-color: var(--blue);
+  border-color: var(--blue);
 }
-
-.btn-primary:hover {
-  background-color: #3048c9;
+ 
+.btn.btn-primary {
+  background-color: var(--blue) !important;
+  border: none !important;
+  border-radius: 999px !important;
+  font-weight: 600;
+  padding: 0.7rem 2rem;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+ 
+.btn.btn-primary:hover {
+  background-color: var(--cyan) !important;
+  transform: translateY(-1px);
 }
