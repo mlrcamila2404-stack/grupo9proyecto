@@ -131,3 +131,9 @@ h1 {
   background-color: var(--cyan) !important;
   transform: translateY(-1px);
 }
+
+img{
+  width: 450px;
+  height: 350px;
+  object-fit: cover;
+}
