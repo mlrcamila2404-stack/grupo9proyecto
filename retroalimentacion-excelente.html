@@ -6,7 +6,7 @@
 <title>Practify - Retroalimentación</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/retroalimentacion.css">
- <link rel="icon" type="image/png" href="img/image.png">
+<link rel="icon" type="image/png" href="img/image.png">
 </head>
 <body>
  
@@ -23,9 +23,9 @@
     <div class="screen-sub">You have completed this activity with very good results.</div>
  
     <div class="result-card">
-      <div class="circle-progress" style="background: conic-gradient(#4F46E5 0% 85%, #EEF0FB 85% 100%);">
+      <div class="circle-progress" id="circleProgress" style="background: conic-gradient(#4F46E5 0% 85%, #EEF0FB 85% 100%);">
         <div class="inner">
-          <div class="score" style="color:#4F46E5;">85%</div>
+          <div class="score" id="scoreValue" style="color:#4F46E5;">85%</div>
           <div class="score-label">Score</div>
         </div>
       </div>
@@ -34,15 +34,15 @@
  
       <div class="stats-grid">
         <div class="stat correct">
-          <div class="num">17</div>
+          <div class="num" id="statCorrect">17</div>
           <div class="label">Correct Answers</div>
         </div>
         <div class="stat wrong">
-          <div class="num">3</div>
+          <div class="num" id="statWrong">3</div>
           <div class="label">Incorrect Answers</div>
         </div>
         <div class="stat">
-          <div class="num">12:40</div>
+          <div class="num">--</div>
           <div class="label">Time</div>
         </div>
       </div>
@@ -56,11 +56,11 @@
     </div>
  
     <div class="actions">
-     
       <a href="examenes.html" class="btn-fill-style">Continue</a>
     </div>
  
   </div>
  
+  <script src="js/retroalimentacion.js"></script>
 </body>
 </html>
