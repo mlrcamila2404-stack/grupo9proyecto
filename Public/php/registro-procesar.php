@@ -33,5 +33,5 @@ $stmt = $pdo->prepare(
 );
 $stmt->execute([$nombre, $apellido, $correo, $password_hash]);
  
-header("Location: ../login.html");
+header("Location: ../examenes.html");
 exit;
