@@ -1,0 +1,222 @@
+:root {
+  --ink: #16213E;
+  --ink-soft: rgba(22, 33, 62, 0.65);
+  --cream: #F7F5F0;
+  --yellow: #FFC857;
+  --blue: #3A86FF;
+  --purple: #7C3AED;
+  --cyan: #06B6D4;
+  --border: #E8E2D3;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: 'Poppins', sans-serif;
+}
+
+.wordmark-nav {
+  font-weight: 800;
+  font-size: 1.35rem;
+  text-decoration: none;
+}
+
+.wordmark-nav .w-blue { color: var(--blue); }
+.wordmark-nav .w-purple { color: var(--purple); }
+
+.navbar .nav-link {
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.navbar .nav-link.active {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.page-header {
+  padding-top: 120px;
+}
+
+.reading-intro {
+  margin-bottom: 40px;
+}
+
+.reading-intro .eyebrow {
+  display: inline-block;
+  background-color: rgba(124, 58, 237, 0.12);
+  color: var(--purple);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.reading-intro h2 {
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.reading-intro p {
+  color: var(--ink-soft);
+  max-width: 480px;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.featured-card {
+  background: linear-gradient(150deg, #F3EBFF 0%, #fff 60%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.featured-card.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.featured-card .tag {
+  display: inline-block;
+  background-color: rgba(124, 58, 237, 0.15);
+  color: var(--purple);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 999px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.featured-card .big-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.featured-card h3 {
+  font-weight: 800;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.featured-card p.desc {
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+.featured-card .meta {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.btn-reading-lg {
+  background-color: var(--purple);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.6rem;
+  font-weight: 600;
+  text-decoration: none;
+  width: fit-content;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-reading-lg:hover {
+  background-color: var(--cyan);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.list-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list-row {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.list-row.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.list-row:hover {
+  box-shadow: 0 14px 26px -18px rgba(22, 33, 62, 0.25);
+  border-color: var(--purple);
+}
+
+.list-row .num {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: rgba(124, 58, 237, 0.1);
+  color: var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.list-row .info {
+  flex: 1;
+}
+
+.list-row .info h6 {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.list-row .info span {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.list-row .btn-reading-sm {
+  background-color: transparent;
+  color: var(--purple);
+  border: 1.5px solid var(--purple);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.list-row .btn-reading-sm:hover {
+  background-color: var(--purple);
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .editorial-grid {
+    grid-template-columns: 1fr;
+  }
+}

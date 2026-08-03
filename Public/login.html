@@ -18,8 +18,8 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="perfil.html">Profile</a></li>
-          <li class="nav-item"><a class="nav-link active" href="examenes.html">Exams</a></li>
-          <li class="nav-item"><a class="nav-link active" href="sobre.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="examenes.html">Exams</a></li>
+          <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
         </ul>
       </div>
     </div>
@@ -40,7 +40,7 @@
       <h2>Login</h2>
       <p class="subtitle">Enter your details to continue practicing.</p>
  
-      <form action="php/login-procesar.php" method="POST">
+      <form id="form-login">
         <div class="field">
           <label for="correo">Email Address</label>
           <input type="email" id="correo" name="correo" class="form-control" placeholder="your.email@example.com" autocomplete="email" required>
@@ -50,6 +50,8 @@
           <label for="password">Password</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="Your password" autocomplete="current-password" required>
         </div>
+
+        <div id="login-error" class="text-danger small mb-2"></div>
  
         <button type="submit" class="btn-practfy">Login</button>
  
@@ -60,5 +62,8 @@
     </div>
  
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/login.js"></script>
 </body>
 </html>
