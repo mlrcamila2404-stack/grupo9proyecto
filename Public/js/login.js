@@ -22,7 +22,7 @@ async function iniciarSesion(evento) {
     formData.append('correo', correo);
     formData.append('password', password);
 
-    const respuesta = await fetch('../auth/login.php', {
+    const respuesta = await fetch('auth/login.php', {
       method: 'POST',
       body: formData
     });

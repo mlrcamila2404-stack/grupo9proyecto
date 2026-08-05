@@ -3,64 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practify - Retroalimentación</title>
+<title>Practify - Feedback</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/retroalimentacion.css">
 <link rel="icon" type="image/png" href="img/image.png">
 </head>
 <body>
- 
+
   <div class="bg-shape s1"></div>
   <div class="bg-shape s2"></div>
- 
+
   <div class="feedback-wrap">
- 
+
     <div class="wordmark-nav" style="text-align:center; margin-bottom: 24px;">
       <span class="w-prac">Prac</span><span class="w-tify">tify</span>
     </div>
- 
-    <div class="screen-title">Excellent work!</div>
-    <div class="screen-sub">You have completed this activity with very good results.</div>
- 
+
+    <div class="screen-title" id="screenTitle">Loading results...</div>
+    <div class="screen-sub" id="screenSub">Please wait.</div>
+
     <div class="result-card">
-      <div class="circle-progress" id="circleProgress" style="background: conic-gradient(#4F46E5 0% 85%, #EEF0FB 85% 100%);">
+      <div class="circle-progress" id="circleProgress">
         <div class="inner">
-          <div class="score" id="scoreValue" style="color:#4F46E5;">85%</div>
+          <div class="score" id="scoreValue">--</div>
           <div class="score-label">Score</div>
         </div>
       </div>
- 
-      <span class="badge-level" style="background: rgba(255,176,56,0.18); color:#8A5A00;">🏅 Excellent Performance</span>
- 
+
+      <span class="badge-level" id="badgeLevel"></span>
+
       <div class="stats-grid">
         <div class="stat correct">
-          <div class="num" id="statCorrect">17</div>
+          <div class="num" id="statCorrect">--</div>
           <div class="label">Correct Answers</div>
         </div>
         <div class="stat wrong">
-          <div class="num" id="statWrong">3</div>
+          <div class="num" id="statWrong">--</div>
           <div class="label">Incorrect Answers</div>
         </div>
         <div class="stat">
-          <div class="num">--</div>
+          <div class="num" id="statTime">--</div>
           <div class="label">Time</div>
         </div>
       </div>
     </div>
- 
+
     <div class="feedback-box">
       <h6>Feedback</h6>
-      <div class="feedback-item"><span class="icon">✅</span><span>Excellent understanding of main ideas.</span></div>
-      <div class="feedback-item"><span class="icon">✅</span><span>Good use of vocabulary in context.</span></div>
-      <div class="feedback-item"><span class="icon">✅</span><span>Very good response time.</span></div>
+      <div id="feedbackList"></div>
     </div>
- 
+
     <div class="actions">
       <a href="examenes.html" class="btn-fill-style">Continue</a>
     </div>
- 
+
   </div>
- 
+
   <script src="js/retroalimentacion.js"></script>
 </body>
 </html>

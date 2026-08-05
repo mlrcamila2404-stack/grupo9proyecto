@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/listening1.css">
   <link rel="icon" type="image/png" href="img/image.png">
 </head>
-<body data-fresh-attempt="true">
+<body data-fresh-attempt="true" data-auto-init="false">
 
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
     <div class="container">
@@ -35,61 +35,26 @@
     </section>
 
     <div class="quiz-progress mb-4">
-      <div class="quiz-progress-top"><span id="quizProgressLabel">0 of 5 answered</span></div>
+      <div class="quiz-progress-top"><span id="quizProgressLabel">Loading...</span></div>
       <div class="progress-track"><div class="progress-fill" id="quizProgressBar"></div></div>
     </div>
 
-    <div class="question-card">
-      <p><strong>Question 1:</strong> The manager ______ the report before the meeting.</p>
-      <form>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1a" data-correct="true"><label class="form-check-label" for="q1a">reviewed</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1b"><label class="form-check-label" for="q1b">review</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q1" id="q1c"><label class="form-check-label" for="q1c">reviewing</label></div>
-      </form>
-    </div>
-
-    <div class="question-card">
-      <p><strong>Question 2:</strong> The new policy will ______ next month.</p>
-      <form>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2a" data-correct="true"><label class="form-check-label" for="q2a">take effect</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2b"><label class="form-check-label" for="q2b">takes effect</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q2" id="q2c"><label class="form-check-label" for="q2c">took effect</label></div>
-      </form>
-    </div>
-
-    <div class="question-card">
-      <p><strong>Question 3:</strong> The company is known ______ its excellent customer service.</p>
-      <form>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3a" data-correct="true"><label class="form-check-label" for="q3a">for</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3b"><label class="form-check-label" for="q3b">to</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q3" id="q3c"><label class="form-check-label" for="q3c">about</label></div>
-      </form>
-    </div>
-
-    <div class="question-card">
-      <p><strong>Question 4:</strong> Please submit your application ______ Friday.</p>
-      <form>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4a" data-correct="true"><label class="form-check-label" for="q4a">by</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4b"><label class="form-check-label" for="q4b">at</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q4" id="q4c"><label class="form-check-label" for="q4c">on</label></div>
-      </form>
-    </div>
-
-    <div class="question-card">
-      <p><strong>Question 5:</strong> The project was delayed ______ the lack of resources.</p>
-      <form>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5a"><label class="form-check-label" for="q5a">because</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5b" data-correct="true"><label class="form-check-label" for="q5b">due to</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="q5" id="q5c"><label class="form-check-label" for="q5c">although</label></div>
-      </form>
+    <div id="quizContainer">
+      <p class="text-center text-muted">Loading questions...</p>
     </div>
 
     <div class="mt-4 text-center">
-      <a href="retroalimentacion-excelente.html" class="btn btn-primary" data-action="finalize">Finalize Practice</a>
+      <button type="button" class="btn btn-primary" onclick="finalizarPrueba(1)">Finalize Practice</button>
     </div>
 
   </div>
 
   <script src="js/quiz.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await cargarPreguntas(1, 'quizContainer');
+    });
+  </script>
+
 </body>
 </html>

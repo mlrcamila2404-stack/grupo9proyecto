@@ -1,21 +1,21 @@
-document.addEventListener('DOMContentLoaded', () => {
+function inicializarQuiz() {
   const cards = document.querySelectorAll('.question-card');
   const groups = new Set();
- 
+
   cards.forEach((card) => {
     card.querySelectorAll('input[type="radio"]').forEach((input) => {
       groups.add(input.name);
     });
   });
- 
+
   const total = groups.size;
   const bar = document.getElementById('quizProgressBar');
   const label = document.getElementById('quizProgressLabel');
- 
+
   function currentPageStats() {
     let correct = 0;
     let answered = 0;
- 
+
     groups.forEach((name) => {
       const checked = document.querySelector('input[name="' + name + '"]:checked');
       if (!checked) return;
@@ -27,31 +27,32 @@ document.addEventListener('DOMContentLoaded', () => {
         correct++;
       }
     });
- 
+
     return { answered, correct, total };
   }
- 
+
   function updateProgress() {
     const stats = currentPageStats();
     const percent = total ? Math.round((stats.answered / total) * 100) : 0;
     if (bar) bar.style.width = percent + '%';
     if (label) label.textContent = stats.answered + ' of ' + total + ' answered';
   }
- 
+
   cards.forEach((card) => {
     card.addEventListener('change', () => {
       card.classList.add('answered');
       updateProgress();
     });
   });
- 
+
   updateProgress();
- 
+
   if (document.body.dataset.freshAttempt === 'true') {
     sessionStorage.removeItem('practifyCorrect');
     sessionStorage.removeItem('practifyTotal');
+    sessionStorage.setItem('practifyStartTime', Date.now().toString());
   }
- 
+
   document.querySelectorAll('[data-action="next"]').forEach((link) => {
     link.addEventListener('click', () => {
       const stats = currentPageStats();
@@ -61,46 +62,143 @@ document.addEventListener('DOMContentLoaded', () => {
       sessionStorage.setItem('practifyTotal', prevTotal + stats.total);
     });
   });
- 
+
   document.querySelectorAll('[data-action="finalize"]').forEach((link) => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
- 
+
       const stats = currentPageStats();
       const prevCorrect = parseInt(sessionStorage.getItem('practifyCorrect') || '0', 10);
       const prevTotal = parseInt(sessionStorage.getItem('practifyTotal') || '0', 10);
- 
+
       const finalCorrect = prevCorrect + stats.correct;
       const finalTotal = prevTotal + stats.total;
       const finalWrong = finalTotal - finalCorrect;
       const percent = finalTotal ? Math.round((finalCorrect / finalTotal) * 100) : 0;
- 
-      let level = 'mejorar';
-      if (percent >= 80) level = 'excelente';
-      else if (percent >= 60) level = 'bueno';
- 
+
+      const startTime = parseInt(sessionStorage.getItem('practifyStartTime') || '0', 10);
+      const elapsedMs = startTime ? Date.now() - startTime : 0;
+
       sessionStorage.removeItem('practifyCorrect');
       sessionStorage.removeItem('practifyTotal');
- 
+      sessionStorage.removeItem('practifyStartTime');
+
       const params = new URLSearchParams({
         score: percent,
         correct: finalCorrect,
         wrong: finalWrong < 0 ? 0 : finalWrong,
-        total: finalTotal
+        total: finalTotal,
+        time: elapsedMs
       });
- 
+
       const href = link.getAttribute('href');
       const basePath = href.substring(0, href.lastIndexOf('/') + 1);
-      window.location.href = basePath + 'retroalimentacion-' + level + '.html?' + params.toString();
+      window.location.href = basePath + 'retroalimentacion-excelente.html?' + params.toString();
     });
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.body.dataset.autoInit !== 'false') {
+    inicializarQuiz();
+  }
 });
 
-// Espera a que la página cargue
-    window.addEventListener("load", function() {
-      const audio = document.getElementById("miAudio");
-      // Intenta reproducir automáticamente
-      audio.play().catch(error => {
-        console.log("El navegador bloqueó la reproducción automática:", error);
+async function cargarPreguntas(idPrueba, contenedorId) {
+  try {
+    const res = await fetch('pruebas/preguntas.php?id_prueba=' + idPrueba);
+    const data = await res.json();
+
+    if (!data.success) {
+      console.error(data.message);
+      return;
+    }
+
+    const contenedor = document.getElementById(contenedorId);
+    contenedor.innerHTML = '';
+
+    data.secciones.forEach((seccion) => {
+      seccion.recursos.forEach((recurso) => {
+        recurso.preguntas.forEach((pregunta) => {
+          const card = document.createElement('div');
+          card.className = 'question-card';
+          card.dataset.idPregunta = pregunta.id_pregunta;
+
+          let opcionesHtml = '';
+          pregunta.opciones.forEach((opcion) => {
+            const inputId = 'p' + pregunta.id_pregunta + opcion.letra;
+            opcionesHtml += `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="p${pregunta.id_pregunta}" id="${inputId}" value="${opcion.letra}">
+                <label class="form-check-label" for="${inputId}">${opcion.texto_opcion}</label>
+              </div>`;
+          });
+
+          card.innerHTML = `<p><strong>Question ${pregunta.numero_pregunta}:</strong> ${pregunta.texto_pregunta}</p>${opcionesHtml}`;
+          contenedor.appendChild(card);
+        });
       });
     });
+
+    inicializarQuiz();
+
+  } catch (error) {
+    console.error('Error al cargar preguntas:', error);
+  }
+}
+
+async function guardarIntento(idPrueba) {
+  const respuestas = [];
+
+  document.querySelectorAll('.question-card').forEach((card) => {
+    const idPregunta = card.dataset.idPregunta;
+    const checked = card.querySelector('input[type="radio"]:checked');
+    if (checked) {
+      respuestas.push({ id_pregunta: idPregunta, respuesta: checked.value });
+    }
+  });
+
+  try {
+    const res = await fetch('intentos/guardar.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_prueba: idPrueba, respuestas: respuestas })
+    });
+
+    const data = await res.json();
+
+    if (!data.success) {
+      console.error(data.message);
+      return null;
+    }
+
+    return data;
+
+  } catch (error) {
+    console.error('Error al guardar el intento:', error);
+    return null;
+  }
+}
+
+async function finalizarPrueba(idPrueba) {
+  const resultado = await guardarIntento(idPrueba);
+
+  if (!resultado) {
+    alert('Hubo un error al guardar tu resultado. Intenta de nuevo.');
+    return;
+  }
+
+  const startTime = parseInt(sessionStorage.getItem('practifyStartTime') || '0', 10);
+  const elapsedMs = startTime ? Date.now() - startTime : 0;
+  sessionStorage.removeItem('practifyStartTime');
+
+  const params = new URLSearchParams({
+    score: resultado.score,
+    correct: resultado.correct,
+    wrong: resultado.wrong,
+    total: resultado.total,
+    time: elapsedMs
+  });
+
+  window.location.href = 'retroalimentacion-excelente.html?' + params.toString();
+}

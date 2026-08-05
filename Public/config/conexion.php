@@ -1,5 +1,3 @@
-
-Conexion · PHP
 <?php
 class Database {
     private $host = "localhost";
@@ -7,10 +5,10 @@ class Database {
     private $username = "root";
     private $password = "";
     public $conn;
- 
+
     public function getConnection() {
         $this->conn = null;
- 
+
         try {
             $this->conn = new PDO(
                 "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8mb4",
@@ -22,8 +20,7 @@ class Database {
             echo json_encode(["success" => false, "message" => "Error de conexión: " . $e->getMessage()]);
             exit;
         }
- 
+
         return $this->conn;
     }
 }
- 

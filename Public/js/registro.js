@@ -28,7 +28,7 @@ async function crearCuenta(evento) {
     formData.append('password', password);
     formData.append('password2', password2);
 
-    const respuesta = await fetch('../auth/registro.php', {
+    const respuesta = await fetch('auth/registro.php', {
       method: 'POST',
       body: formData
     });
