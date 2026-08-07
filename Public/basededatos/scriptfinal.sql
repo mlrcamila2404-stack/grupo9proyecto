@@ -100,4 +100,4 @@ CREATE TABLE respuestas_usuario (
 
     FOREIGN KEY (id_pregunta)
         REFERENCES preguntas(id_pregunta)
-);
+);practify

@@ -119,7 +119,14 @@ async function cargarPreguntas(idPrueba, contenedorId) {
 
     data.secciones.forEach((seccion) => {
       seccion.recursos.forEach((recurso) => {
-        recurso.preguntas.forEach((pregunta) => {
+        let mediaHtml = '';
+        if (recurso.tipo_recurso === 'imagen') {
+          mediaHtml = '<img src="img/' + recurso.archivo + '" class="img-fluid mb-3" alt="Recurso">';
+        } else if (recurso.tipo_recurso === 'audio') {
+          mediaHtml = '<audio class="quiz-audio mb-3 w-100" id="audio' + recurso.id_recurso + '" src="audios/' + recurso.archivo + '"></audio>';
+        }
+
+        recurso.preguntas.forEach((pregunta, index) => {
           const card = document.createElement('div');
           card.className = 'question-card';
           card.dataset.idPregunta = pregunta.id_pregunta;
@@ -134,11 +141,34 @@ async function cargarPreguntas(idPrueba, contenedorId) {
               </div>`;
           });
 
-          card.innerHTML = `<p><strong>Question ${pregunta.numero_pregunta}:</strong> ${pregunta.texto_pregunta}</p>${opcionesHtml}`;
+          const mediaBloque = index === 0 ? mediaHtml : '';
+          const textoHtml = seccion.tipo === 'reading' && pregunta.texto_pregunta
+            ? `<p><strong>Question ${pregunta.numero_pregunta}:</strong> ${pregunta.texto_pregunta}</p>`
+            : `<p><strong>Question ${pregunta.numero_pregunta}:</strong> Choose the best option.</p>`;
+
+          card.innerHTML = mediaBloque + textoHtml + opcionesHtml;
+
+          if (index === 0 && recurso.tipo_recurso === 'audio') {
+            card.dataset.audioId = 'audio' + recurso.id_recurso;
+          }
+
           contenedor.appendChild(card);
         });
       });
     });
+
+    const tarjetasConAudio = contenedor.querySelectorAll('[data-audio-id]');
+    const audioObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const audioEl = document.getElementById(entry.target.dataset.audioId);
+          if (audioEl) audioEl.play();
+          audioObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    tarjetasConAudio.forEach((card) => audioObserver.observe(card));
 
     inicializarQuiz();
 
