@@ -96,6 +96,11 @@ function inicializarQuiz() {
       window.location.href = basePath + 'retroalimentacion-excelente.html?' + params.toString();
     });
   });
+
+  const finalizeBtn = document.querySelector('[onclick^="finalizarPrueba"]');
+  if (finalizeBtn && document.body.dataset.next) {
+    finalizeBtn.textContent = 'Next Part';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,7 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function cargarPreguntas(idPrueba, contenedorId) {
   try {
-    const res = await fetch('pruebas/preguntas.php?id_prueba=' + idPrueba);
+    const base = document.body.dataset.base || '';
+    const res = await fetch(base + 'pruebas/preguntas.php?id_prueba=' + idPrueba);
     const data = await res.json();
 
     if (!data.success) {
@@ -121,9 +127,9 @@ async function cargarPreguntas(idPrueba, contenedorId) {
       seccion.recursos.forEach((recurso) => {
         let mediaHtml = '';
         if (recurso.tipo_recurso === 'imagen') {
-          mediaHtml = '<img src="img/' + recurso.archivo + '" class="img-fluid mb-3" alt="Recurso">';
+          mediaHtml = '<img src="' + base + 'img/' + recurso.archivo + '" class="img-fluid mb-3" alt="Recurso">';
         } else if (recurso.tipo_recurso === 'audio') {
-          mediaHtml = '<audio class="quiz-audio mb-3 w-100" id="audio' + recurso.id_recurso + '" src="audios/' + recurso.archivo + '"></audio>';
+          mediaHtml = '<audio class="quiz-audio mb-3 w-100" id="audio' + recurso.id_recurso + '" src="' + base + 'audios/' + recurso.archivo + '"></audio>';
         }
 
         recurso.preguntas.forEach((pregunta, index) => {
@@ -179,6 +185,7 @@ async function cargarPreguntas(idPrueba, contenedorId) {
 
 async function guardarIntento(idPrueba) {
   const respuestas = [];
+  const base = document.body.dataset.base || '';
 
   document.querySelectorAll('.question-card').forEach((card) => {
     const idPregunta = card.dataset.idPregunta;
@@ -189,7 +196,7 @@ async function guardarIntento(idPrueba) {
   });
 
   try {
-    const res = await fetch('intentos/guardar.php', {
+    const res = await fetch(base + 'intentos/guardar.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id_prueba: idPrueba, respuestas: respuestas })
@@ -218,17 +225,38 @@ async function finalizarPrueba(idPrueba) {
     return;
   }
 
+  const prevCorrect = parseInt(sessionStorage.getItem('practifyCorrect') || '0', 10);
+  const prevTotal = parseInt(sessionStorage.getItem('practifyTotal') || '0', 10);
+  const finalCorrect = prevCorrect + resultado.correct;
+  const finalTotal = prevTotal + resultado.total;
+
+  const next = document.body.dataset.next;
+
+  if (next) {
+    sessionStorage.setItem('practifyCorrect', finalCorrect.toString());
+    sessionStorage.setItem('practifyTotal', finalTotal.toString());
+    window.location.href = next;
+    return;
+  }
+
+  const finalWrong = finalTotal - finalCorrect;
+  const percent = finalTotal ? Math.round((finalCorrect / finalTotal) * 100) : 0;
+
   const startTime = parseInt(sessionStorage.getItem('practifyStartTime') || '0', 10);
   const elapsedMs = startTime ? Date.now() - startTime : 0;
+
+  sessionStorage.removeItem('practifyCorrect');
+  sessionStorage.removeItem('practifyTotal');
   sessionStorage.removeItem('practifyStartTime');
 
   const params = new URLSearchParams({
-    score: resultado.score,
-    correct: resultado.correct,
-    wrong: resultado.wrong,
-    total: resultado.total,
+    score: percent,
+    correct: finalCorrect,
+    wrong: finalWrong < 0 ? 0 : finalWrong,
+    total: finalTotal,
     time: elapsedMs
   });
 
-  window.location.href = 'retroalimentacion-excelente.html?' + params.toString();
+  const base = document.body.dataset.base || '';
+  window.location.href = base + 'retroalimentacion-excelente.html?' + params.toString();
 }
