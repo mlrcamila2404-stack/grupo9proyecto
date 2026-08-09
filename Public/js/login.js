@@ -30,7 +30,7 @@ async function iniciarSesion(evento) {
     const datos = await respuesta.json();
 
     if (datos.success) {
-      window.location.href = 'perfil.html';
+      window.location.href = 'sobre.html';
     } else {
       errorBox.textContent = datos.message;
     }

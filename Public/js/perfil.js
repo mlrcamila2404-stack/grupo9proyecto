@@ -78,7 +78,7 @@ async function guardarPerfil(evento) {
   } catch (error) {
     errorBox.textContent = 'Error de conexión con el servidor.';
   } finally {
-    boton.disabled = false;ssssss
+    boton.disabled = false;
     boton.textContent = 'Guardar cambios';
   }
 }

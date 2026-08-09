@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function cargarPreguntas(idPrueba, contenedorId) {
   try {
     const base = document.body.dataset.base || '';
-    const res = await fetch(base + 'pruebas/preguntas.php?id_prueba=' + idPrueba);
+    const res = await fetch(base + 'pruebas/preguntas.php?id_prueba=' + idPrueba, { cache: 'no-store' });
     const data = await res.json();
 
     if (!data.success) {
@@ -148,7 +148,7 @@ async function cargarPreguntas(idPrueba, contenedorId) {
           });
 
           const mediaBloque = index === 0 ? mediaHtml : '';
-          const textoHtml = seccion.tipo === 'reading' && pregunta.texto_pregunta
+          const textoHtml = pregunta.texto_pregunta
             ? `<p><strong>Question ${pregunta.numero_pregunta}:</strong> ${pregunta.texto_pregunta}</p>`
             : `<p><strong>Question ${pregunta.numero_pregunta}:</strong> Choose the best option.</p>`;
 
