@@ -221,7 +221,7 @@ async function finalizarPrueba(idPrueba) {
   const resultado = await guardarIntento(idPrueba);
 
   if (!resultado) {
-    alert('Hubo un error al guardar tu resultado. Intenta de nuevo.');
+    alert('Tienes que completar todas las preguntas.');
     return;
   }
 
