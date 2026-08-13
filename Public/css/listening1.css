@@ -137,3 +137,12 @@ img{
   height: 350px;
   object-fit: cover;
 }
+
+
+body[data-page="reading2"] .question-card img {
+  max-width:1100px;
+}
+
+body[data-page="reading3"] .question-card img {
+  max-width:1100px;
+}

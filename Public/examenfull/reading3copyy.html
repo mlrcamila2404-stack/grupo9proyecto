@@ -3,79 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Reading comprension </title>
+  <title>Reading Comprension</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/listening1.css">
 </head>
-<body class="container py-5">
+<body class="container py-5" data-auto-init="false" data-base="../">
 
-  <h1 class="mb-4 text-center"> Reading comprension</h1>
+  <h1 class="mb-4 text-center">Reading Comprension</h1>
 
   <section class="container my-4 border rounded bg-light p-4">
     <h3 class="text-primary">Part 6: Reading Comprehension</h3>
-    <p class="lead">Read the following paragraphs and select the best<option value=""></option></p>
+    <p class="lead">Read the following paragraphs and select the best answer.</p>
   </section>
 
   <div class="quiz-progress mb-4">
-      <div class="quiz-progress-top"><span id="quizProgressLabel">0 of 5 answered</span></div>
-      <div class="progress-track"><div class="progress-fill" id="quizProgressBar"></div></div>
-    </div>
-
-  <div class="question-card">
-    <img src="imagen1.jpg" alt="Question 1" class="img-fluid mb-3">
-    <form>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p1" id="p1a"><label class="form-check-label" for="p1a">Option A</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p1" id="p1b"><label class="form-check-label" for="p1b">Option B</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p1" id="p1c"><label class="form-check-label" for="p1c">Option C</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p1" id="p1d"><label class="form-check-label" for="p1d">Option D</label></div>
-    </form>
+    <div class="quiz-progress-top"><span id="quizProgressLabel">0 of 15 answered</span></div>
+    <div class="progress-track"><div class="progress-fill" id="quizProgressBar"></div></div>
   </div>
 
-  <div class="question-card">
-    <img src="imagen2.jpg" alt="Question 2" class="img-fluid mb-3">
-    <form>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p2" id="p2a"><label class="form-check-label" for="p2a">Option A</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p2" id="p2b"><label class="form-check-label" for="p2b">Option B</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p2" id="p2c"><label class="form-check-label" for="p2c">Option C</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p2" id="p2d"><label class="form-check-label" for="p2d">Option D</label></div>
-    </form>
-  </div>
-
-  <div class="question-card">
-    <img src="imagen3.jpg" alt="Question 3" class="img-fluid mb-3">
-    <form>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p3" id="p3a"><label class="form-check-label" for="p3a">Option A</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p3" id="p3b"><label class="form-check-label" for="p3b">Option B</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p3" id="p3c"><label class="form-check-label" for="p3c">Option C</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p3" id="p3d"><label class="form-check-label" for="p3d">Option D</label></div>
-    </form>
-  </div>
-
-  <div class="question-card">
-    <img src="imagen4.jpg" alt="Question 4" class="img-fluid mb-3">
-    <form>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p4" id="p4a"><label class="form-check-label" for="p4a">Option A</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p4" id="p4b"><label class="form-check-label" for="p4b">Option B</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p4" id="p4c"><label class="form-check-label" for="p4c">Option C</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p4" id="p4d"><label class="form-check-label" for="p4d">Option D</label></div>
-    </form>
-  </div>
-
-  <div class="question-card">
-    <img src="imagen5.jpg" alt="Question 5" class="img-fluid mb-3">
-    <form>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p5" id="p5a"><label class="form-check-label" for="p5a">Option A</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p5" id="p5b"><label class="form-check-label" for="p5b">Option B</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p5" id="p5c"><label class="form-check-label" for="p5c">Option C</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="p5" id="p5d"><label class="form-check-label" for="p5d">Option D</label></div>
-    </form>
-  </div>
+  <div id="quizContainer"></div>
 
   <div class="mt-4 text-center">
-   <a href="../retroalimentacion-excelente.html" class="btn btn-primary" data-action="finalize">Finish Practice</a>
-      
-    </a>
+    <button type="button" class="btn btn-primary" onclick="finalizarPrueba(6)">Finish Practice</button>
   </div>
- <script src="../js/quiz.js"></script>
+
+  <script src="../js/quiz.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      cargarPreguntas(6, 'quizContainer');
+    });
+  </script>
 </body>
 </html>
