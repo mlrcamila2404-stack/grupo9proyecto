@@ -339,6 +339,12 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p1_3, 'C', 'Renewing the contract.'),
 (@p1_3, 'D', 'Waiting until the contract runs out.');
 
+-- === FIX: faltaba crear el recurso de la Conversation 2 antes de sus preguntas ===
+INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
+VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 2', 2);
+SET @rec2 = LAST_INSERT_ID();
+-- === FIN FIX ===
+
 INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
 VALUES (@rec2, 1, 'Why does the store need to be more competitive?', 'C');
 SET @p2_1 = LAST_INSERT_ID();
@@ -367,6 +373,11 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p2_3, 'C', 'A customer.'),
 (@p2_3, 'D', 'A marketing executive.');
 
+-- === FIX: faltaba crear el recurso de la Conversation 3 antes de sus preguntas ===
+INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
+VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 3', 3);
+SET @rec3 = LAST_INSERT_ID();
+-- === FIN FIX ===
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
 VALUES (@rec3, 1, 'How long is the basic warranty effective?', 'C');
