@@ -36,7 +36,7 @@ async function crearCuenta(evento) {
     const datos = await respuesta.json();
 
     if (datos.success) {
-      window.location.href = 'perfil.html';
+      window.location.href = 'examenes.html';
     } else {
       errorBox.textContent = datos.message;
     }
