@@ -127,7 +127,7 @@ async function cargarPreguntas(idPrueba, contenedorId) {
       seccion.recursos.forEach((recurso) => {
         let mediaHtml = '';
         if (recurso.tipo_recurso === 'imagen') {
-          mediaHtml = '<img src="' + base + 'img/' + recurso.archivo + '" class="img-fluid mb-3" alt="Recurso">';
+          mediaHtml = '<img src="' + base + 'img/' + recurso.archivo + '" class="img-fluid.w-75" alt="Recurso">';
         } else if (recurso.tipo_recurso === 'audio') {
           mediaHtml = '<audio class="quiz-audio mb-3 w-100" id="audio' + recurso.id_recurso + '" src="' + base + 'audios/' + recurso.archivo + '"></audio>';
         }
