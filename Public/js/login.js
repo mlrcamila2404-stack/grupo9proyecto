@@ -4,33 +4,33 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', iniciarSesion);
   }
 });
-
+ 
 async function iniciarSesion(evento) {
   evento.preventDefault();
-
+ 
   const correo = document.getElementById('correo').value.trim();
   const password = document.getElementById('password').value;
   const boton = document.querySelector('.btn-practfy');
   const errorBox = document.getElementById('login-error');
-
+ 
   errorBox.textContent = '';
   boton.disabled = true;
   boton.textContent = 'Logging in...';
-
+ 
   try {
     const formData = new FormData();
     formData.append('correo', correo);
     formData.append('password', password);
-
+ 
     const respuesta = await fetch('auth/login.php', {
       method: 'POST',
       body: formData
     });
-
+ 
     const datos = await respuesta.json();
-
+ 
     if (datos.success) {
-      window.location.href = 'examenes.html';
+      window.location.href = 'sobre.html';
     } else {
       errorBox.textContent = datos.message;
     }
