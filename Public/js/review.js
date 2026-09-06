@@ -49,7 +49,7 @@ async function loadReview() {
         ${mediaHtml}
         <p class="mb-3">${item.texto_pregunta || 'Choose the best option'}</p>
         <div class="answer-box user-answer">
-          <strong>Your Answer:</strong> ${item.texto_opcion}
+          <strong>Your Answer:</strong> ${item.user_option_text || 'No answer selected'}
         </div>
         ${!isCorrect ? `
         <div class="answer-box correct-answer">

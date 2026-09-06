@@ -1,7 +1,30 @@
-.profile-container {
-  width: 100%;
-  max-width: 900px;
-  z-index: 1;
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.wordmark-nav {
+  font-weight: 800;
+  font-size: 1.35rem;
+}
+
+.wordmark-nav .w-blue { color: var(--blue); }
+.wordmark-nav .w-purple { color: var(--purple); }
+
+.navbar .nav-link {
+  font-weight: 500;
+  color: rgba(22, 33, 62, 0.65);
+}
+
+.navbar .nav-link.active {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.page-header {
+  padding-top: 100px;
 }
 
 .profile-panel {
@@ -12,6 +35,7 @@
   border-radius: 30px;
   padding: 50px 40px;
   box-shadow: 0 25px 50px var(--shadow);
+  transition: var(--transition);
 }
 
 .avatar-circle {
@@ -30,8 +54,8 @@
 }
 
 .btn-outline-practfy {
-  border: 1px solid rgba(22, 33, 62, 0.1);
-  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.8);
   color: var(--ink);
   padding: 12px 24px;
   border-radius: 100px;
@@ -48,8 +72,8 @@
 }
 
 .edit-panel-inner {
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   padding: 30px;
 }
@@ -67,22 +91,24 @@
 }
 
 .edit-panel-inner .form-control {
-  border: 1px solid rgba(22, 33, 62, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 12px;
   padding: 10px 15px;
   background: rgba(255, 255, 255, 0.7);
+  color: var(--ink);
   transition: var(--transition);
 }
 
 .edit-panel-inner .form-control:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.1);
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--ink);
 }
 
 .stat-card {
   background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   padding: 25px;
   text-align: center;
@@ -106,7 +132,7 @@
 .stat-card .label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(22, 33, 62, 0.5);
+  color: rgba(22, 33, 62, 0.65);
 }
 
 .progress-hero {
@@ -154,7 +180,7 @@
 
 .skill-card {
   background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 20px;
   padding: 25px;
   transition: var(--transition);
@@ -189,7 +215,7 @@
 .skill-icon-purple { background: rgba(124, 58, 237, 0.15); color: var(--purple); }
 
 .skill-card-name { font-weight: 700; font-size: 1.1rem; margin: 0; color: var(--ink); }
-.skill-card-sub { font-size: 0.85rem; color: rgba(22, 33, 62, 0.5); margin: 0; }
+.skill-card-sub { font-size: 0.85rem; color: rgba(22, 33, 62, 0.65); margin: 0; }
 
 .skill-card-numbers {
   display: flex;
@@ -230,5 +256,5 @@
 
 @keyframes skeleton-shine {
   0% { background-position: 100% 50%; }
-  100% { background-position: 0 50%; }
+  100% { background-position: 0% 50%; }
 }

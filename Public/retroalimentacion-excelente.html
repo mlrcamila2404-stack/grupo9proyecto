@@ -1,64 +1,205 @@
-<!DOCTYPE html>
-<html lang="es">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Practify - Feedback</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/retroalimentacion.css">
-<link rel="icon" type="image/png" href="img/image.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practify - Exam Results</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="img/image.png">
+  <style>
+    .results-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 40px 20px;
+    }
+    .results-blob-field {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      filter: blur(80px);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .results-blob {
+      position: absolute;
+      border-radius: 50%;
+    }
+    .results-blob-a {
+      width: 400px;
+      height: 400px;
+      left: -10%;
+      top: 10%;
+      background: var(--blue);
+      animation: blobDrift 18s ease-in-out infinite;
+    }
+    .results-blob-b {
+      width: 350px;
+      height: 350px;
+      right: -5%;
+      bottom: 10%;
+      background: var(--purple);
+      animation: blobDrift 22s ease-in-out infinite reverse;
+    }
+    @keyframes blobDrift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(50px, -40px) scale(1.1); }
+      66% { transform: translate(-40px, 30px) scale(0.9); }
+    }
+    .results-panel {
+      background: var(--panel-bg);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 50px 40px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 25px 50px var(--shadow);
+      text-align: center;
+      z-index: 1;
+    }
+    .score-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue) 0% 0%, rgba(22,33,62,0.1) 0% 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 10px 25px var(--shadow);
+    }
+    .score-circle-inner {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+    .score-value {
+      font-size: 2.5rem;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .score-label {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .stat-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 15px;
+    }
+    .stat-box .val {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-color);
+    }
+    .stat-box .lbl {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+    .feedback-text {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="bg-shape s1"></div>
-  <div class="bg-shape s2"></div>
-
-  <div class="feedback-wrap">
-
-    <div class="wordmark-nav" style="text-align:center; margin-bottom: 24px;">
-      <span class="w-prac">Prac</span><span class="w-tify">tify</span>
+  <div class="results-shell">
+    <div class="results-blob-field">
+      <div class="results-blob results-blob-a"></div>
+      <div class="results-blob results-blob-b"></div>
     </div>
 
-    <div class="screen-title" id="screenTitle">Loading results...</div>
-    <div class="screen-sub" id="screenSub">Please wait.</div>
+    <div class="results-panel reveal">
+      <h2 class="fw-bold mb-4">Exam Results</h2>
 
-    <div class="result-card">
-      <div class="circle-progress" id="circleProgress">
-        <div class="inner">
-          <div class="score" id="scoreValue">--</div>
-          <div class="score-label">Score</div>
+      <div class="score-circle" id="scoreCircle">
+        <div class="score-circle-inner">
+          <span class="score-value" id="finalPercent">0%</span>
+          <span class="score-label">Score</span>
         </div>
       </div>
-
-      <span class="badge-level" id="badgeLevel"></span>
 
       <div class="stats-grid">
-        <div class="stat correct">
-          <div class="num" id="statCorrect">--</div>
-          <div class="label">Correct Answers</div>
+        <div class="stat-box">
+          <span class="val" id="correctCount">0</span>
+          <span class="lbl">Correct</span>
         </div>
-        <div class="stat wrong">
-          <div class="num" id="statWrong">--</div>
-          <div class="label">Incorrect Answers</div>
-        </div>
-        <div class="stat">
-          <div class="num" id="statTime">--</div>
-          <div class="label">Time</div>
+        <div class="stat-box">
+          <span class="val" id="wrongCount">0</span>
+          <span class="lbl">Wrong</span>
         </div>
       </div>
-    </div>
 
-    <div class="feedback-box">
-      <h6>Feedback</h6>
-      <div id="feedbackList"></div>
-    </div>
+      <div class="feedback-text" id="feedbackMsg">
+        Calculating your result...
+      </div>
 
-    <div class="actions">
-      <a href="examenes.html" class="btn-fill-style">Continue</a>
+      <div class="d-grid gap-3">
+        <a href="review.html" id="reviewBtn" class="btn-practfy text-decoration-none">Review Answers</a>
+        <a href="examenes.html" class="btn-outline-practfy text-decoration-none text-center">Back to Exams</a>
+      </div>
     </div>
-
   </div>
 
-  <script src="js/retroalimentacion.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const score = parseInt(params.get('score') || '0');
+      const correct = params.get('correct') || '0';
+      const wrong = params.get('wrong') || '0';
+      const id_intento = params.get('id');
+
+      document.getElementById('finalPercent').textContent = score + '%';
+      document.getElementById('correctCount').textContent = correct;
+      document.getElementById('wrongCount').textContent = wrong;
+
+      // Update score circle gradient
+      const circle = document.getElementById('scoreCircle');
+      circle.style.background = `conic-gradient(var(--blue) 0% ${score}%, rgba(22,33,62,0.1) ${score}% 100%)`;
+
+      // Mini feedback
+      const feedback = document.getElementById('feedbackMsg');
+      if (score === 100) feedback.textContent = "Perfect score! You're a master!";
+      else if (score >= 80) feedback.textContent = "Great job! You've almost mastered this part.";
+      else if (score >= 60) feedback.textContent = "Good effort! Keep practicing to improve.";
+      else feedback.textContent = "Don't give up! Practice makes perfect.";
+
+      // Review button link
+      if (id_intento) {
+        document.getElementById('reviewBtn').href = `review.html?id=${id_intento}`;
+      } else {
+        document.getElementById('reviewBtn').style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
+

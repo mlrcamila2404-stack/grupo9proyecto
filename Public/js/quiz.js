@@ -103,6 +103,7 @@ function inicializarQuiz() {
   }
 }
  
+
 document.addEventListener('DOMContentLoaded', () => {
   if (document.body.dataset.autoInit !== 'false') {
     inicializarQuiz();
@@ -258,6 +259,6 @@ async function finalizarPrueba(idPrueba) {
   });
  
   const base = document.body.dataset.base || '';
-  window.location.href = base + 'review.html?id=' + resultado.id_intento;
+  window.location.href = base + 'retroalimentacion-excelente.html?id=' + resultado.id_intento + '&score=' + resultado.score + '&correct=' + resultado.correct + '&wrong=' + (resultado.total - resultado.correct);
 }
  
