@@ -20,8 +20,11 @@ try {
     $usuario = $stmtDatosUsuario->fetch(PDO::FETCH_ASSOC);
  
     $stmtTotal = $db->prepare(
-        "SELECT COUNT(*) AS total, AVG(porcentaje) AS promedio
-         FROM intentos WHERE id_usuario = ? AND fecha_fin IS NOT NULL"
+        "SELECT COUNT(*) AS total, AVG(i.porcentaje) AS promedio
+         FROM intentos i
+         JOIN pruebas p ON i.id_prueba = p.id_prueba
+         WHERE i.id_usuario = ? AND i.fecha_fin IS NOT NULL
+         AND p.titulo NOT LIKE '%Full%'"
     );
     $stmtTotal->execute([$id_usuario]);
     $resumen = $stmtTotal->fetch(PDO::FETCH_ASSOC);
@@ -38,7 +41,8 @@ try {
          JOIN preguntas p ON ru.id_pregunta = p.id_pregunta
          JOIN recursos r ON p.id_recurso = r.id_recurso
          JOIN secciones s ON r.id_seccion = s.id_seccion
-         WHERE i.id_usuario = ?
+         JOIN pruebas pr ON i.id_prueba = pr.id_prueba
+         WHERE i.id_usuario = ? AND pr.titulo NOT LIKE '%Full%'
          GROUP BY s.tipo"
     );
     $stmtAciertos->execute([$id_usuario]);
@@ -53,7 +57,7 @@ try {
         "SELECT s.tipo, COUNT(DISTINCT s.id_prueba) AS total
          FROM secciones s
          JOIN pruebas p ON p.id_prueba = s.id_prueba
-         WHERE p.activa = 1
+         WHERE p.activa = 1 AND p.titulo NOT LIKE '%Full%'
          GROUP BY s.tipo"
     );
     $stmtDisponibles->execute();
@@ -68,7 +72,8 @@ try {
         "SELECT s.tipo, COUNT(DISTINCT i.id_prueba) AS completadas
          FROM intentos i
          JOIN secciones s ON s.id_prueba = i.id_prueba
-         WHERE i.id_usuario = ? AND i.fecha_fin IS NOT NULL
+         JOIN pruebas p ON p.id_prueba = i.id_prueba
+         WHERE i.id_usuario = ? AND i.fecha_fin IS NOT NULL AND p.titulo NOT LIKE '%Full%'
          GROUP BY s.tipo"
     );
     $stmtCompletadas->execute([$id_usuario]);

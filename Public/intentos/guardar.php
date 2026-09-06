@@ -63,6 +63,7 @@ try {
 
     echo json_encode([
         "success" => true,
+        "id_intento" => $id_intento,
         "correct" => $correctas,
         "wrong" => $total - $correctas,
         "total" => $total,

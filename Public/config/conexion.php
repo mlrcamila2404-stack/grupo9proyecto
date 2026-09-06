@@ -16,8 +16,11 @@ class Database {
                 $this->password
             );
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            $this->conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         } catch (PDOException $e) {
-            echo json_encode(["success" => false, "message" => "Error de conexión: " . $e->getMessage()]);
+            error_log("Connection Error: " . $e->getMessage());
+            echo json_encode(["success" => false, "message" => "Internal server error occurred."]);
             exit;
         }
 

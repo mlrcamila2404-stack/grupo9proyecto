@@ -1,82 +1,107 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Practfy - Sign Up</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Practify - Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
-   <link rel="icon" type="image/png" href="img/image.png">
+  <link rel="icon" type="image/png" href="img/image.png">
 </head>
 <body>
 
-   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand fw-bold text-primary" href="home.html">Practify</a>
+      <a class="navbar-brand wordmark-nav" href="home.html"><span class="w-blue">Pract</span><span class="w-purple">ify</span></a>
       <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="perfil.html">Profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="examenes.html">Exams</a></li>
+        <ul class="navbar-nav ms-auto" id="navSlider">
+          <span class="nav-pill-indicator" id="navPillIndicator"></span>
           <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="examenes.html">Exams</a></li>
+          <li class="nav-item"><a class="nav-link" href="historial.html">History</a></li>
+          <li class="nav-item"><a class="nav-link" href="sobre.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="perfil.html">Profile</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-
   <div class="auth-shell">
- 
-   <div class="wordmark" style="padding-top: 50px;"><span class="w-blue">Prac</span><span class="w-purple">tify</span></div>
+    <div class="auth-blob-field">
+      <div class="auth-blob auth-blob-a"></div>
+      <div class="auth-blob auth-blob-b"></div>
+    </div>
 
-      <div class="pitch">
+    <div class="auth-panel reveal">
+      <div class="auth-wordmark"><span class="w-blue">Pract</span><span class="w-purple">ify</span></div>
+      <div class="auth-pitch">
         <p>Create your free account and access Listening, Reading and more exams.</p>
       </div>
- 
-    <div class="auth-form-panel">
-      <h2>Sign Up</h2>
- 
-      <form id="form-registro">
-        <div class="field">
-          <label for="nombre">Full Name</label>
-          <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Your full name" autocomplete="name" required>
+
+      <form id="form-registro" class="auth-form">
+        <h2 class="fw-bold mb-4">Sign Up</h2>
+
+        <div class="row g-3">
+          <div class="col-md-6 field">
+            <label for="nombre">Full Name</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div class="col-md-6 field">
+            <label for="apellido">Last Name</label>
+            <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Your last name" autocomplete="family-name" required>
+          </div>
         </div>
 
-        <div class="field">
-          <label for="apellido">Last Name</label>
-          <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Your last name" autocomplete="family-name" required>
-        </div>
- 
         <div class="field">
           <label for="correo">Email Address</label>
           <input type="email" id="correo" name="correo" class="form-control" placeholder="your.email@example.com" autocomplete="email" required>
         </div>
- 
-       
+
         <div class="field">
           <label for="password">Password</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" autocomplete="new-password" required>
         </div>
- 
+
         <div class="field">
           <label for="password2">Confirm Password</label>
           <input type="password" id="password2" name="password2" class="form-control" placeholder="Re-type your password" autocomplete="new-password" required>
         </div>
 
-        <div id="registro-error" class="text-danger small mb-2"></div>
- 
-        <button type="submit" class="btn-practfy">Create Account</button>
- 
-        <div class="switch-link">
+        <div id="registro-error" class="text-danger small mb-3"></div>
+
+        <button type="submit" class="btn-practfy w-100">Create Account</button>
+
+        <div class="auth-switch">
           Do you already have an account? <a href="login.html">Log in</a>
         </div>
       </form>
     </div>
- 
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/registro.js"></script>
+  <script>
+    const navList = document.getElementById('navSlider');
+    const navIndicator = document.getElementById('navPillIndicator');
+    const navLinks = navList?.querySelectorAll('.nav-link');
+
+    function moveNavIndicator(el) {
+      if (!el || !navIndicator) return;
+      navIndicator.style.left = el.offsetLeft + 'px';
+      navIndicator.style.width = el.offsetWidth + 'px';
+    }
+
+    if (navLinks) {
+      const activeNavLink = navList.querySelector('.nav-link.active');
+      requestAnimationFrame(() => moveNavIndicator(activeNavLink));
+      navLinks.forEach((link) => {
+        link.addEventListener('mouseenter', () => moveNavIndicator(link));
+      });
+      navList.addEventListener('mouseleave', () => moveNavIndicator(activeNavLink));
+      window.addEventListener('resize', () => moveNavIndicator(navList.querySelector('.nav-link.active')));
+    }
+  </script>
 </body>
 </html>

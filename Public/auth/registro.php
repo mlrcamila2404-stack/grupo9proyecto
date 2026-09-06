@@ -46,6 +46,7 @@ try {
     $stmt->bindParam(':password_hash', $password_hash);
     $stmt->execute();
 
+    session_regenerate_id(true);
     $_SESSION['id_usuario'] = $db->lastInsertId();
     $_SESSION['nombre'] = $nombre;
     $_SESSION['correo'] = $correo;

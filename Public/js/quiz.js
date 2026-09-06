@@ -258,6 +258,6 @@ async function finalizarPrueba(idPrueba) {
   });
  
   const base = document.body.dataset.base || '';
-  window.location.href = base + 'retroalimentacion-excelente.html?' + params.toString();
+  window.location.href = base + 'review.html?id=' + resultado.id_intento;
 }
  

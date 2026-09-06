@@ -56,6 +56,23 @@ if (filterButtons.length > 0) {
       });
     });
   });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const filter = params.get('filter');
+    if (filter) {
+      const btn = document.querySelector(`.hub-filter-btn[data-filter="${filter}"]`);
+      if (btn) {
+        btn.click();
+        setTimeout(() => {
+          const target = document.querySelector(`[data-group="${filter}"]`);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 100);
+      }
+    }
+  });
 }
 
 const revealEls = document.querySelectorAll('.reveal');
