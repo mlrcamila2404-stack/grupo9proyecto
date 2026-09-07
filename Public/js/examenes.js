@@ -94,3 +94,8 @@ tiltCards.forEach((card) => {
     card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0)';
   });
 });
+
+// Force light mode and clear dark mode cache
+document.body.classList.remove('dark-mode');
+localStorage.removeItem('examHubDarkMode');
+localStorage.removeItem('examDarkMode');
