@@ -15,14 +15,14 @@ async function cargarPerfil() {
     document.getElementById('userEmail').textContent = data.correo;
     document.getElementById('statExamenes').textContent = data.totalExamenes;
     document.getElementById('statPromedio').textContent = data.promedio + '%';
-    document.getElementById('progressPercent').textContent = data.promedio + '%';
+    document.getElementById('progressPercent').textContent = data.porcentajeProgreso + '%';
  
     document.querySelectorAll('.skeleton').forEach((el) => el.classList.remove('skeleton'));
  
     const ring = document.getElementById('progressRing');
     if (ring) {
       ring.style.background =
-        'conic-gradient(var(--ink) 0% ' + data.promedio + '%, rgba(22,33,62,0.15) ' + data.promedio + '% 100%)';
+        'conic-gradient(var(--ink) 0% ' + data.porcentajeProgreso + '%, rgba(22,33,62,0.15) ' + data.porcentajeProgreso + '% 100%)';
     }
  
     if (data.skills) {

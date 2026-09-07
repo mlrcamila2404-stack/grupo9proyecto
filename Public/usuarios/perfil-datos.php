@@ -85,18 +85,24 @@ try {
     }
  
     $skills = [];
+    $totalDisponibles = 0;
     foreach (['listening', 'reading'] as $tipo) {
         $totalRespuestas = isset($aciertosPorTipo[$tipo]) ? (int) $aciertosPorTipo[$tipo]['total_respuestas'] : 0;
         $correctas = isset($aciertosPorTipo[$tipo]) ? (int) $aciertosPorTipo[$tipo]['correctas'] : 0;
  
+        $disp = $disponiblesPorTipo[$tipo] ?? 0;
+        $totalDisponibles += $disp;
+
         $skills[] = [
             "tipo" => $tipo,
             "completadas" => $completadasPorTipo[$tipo] ?? 0,
-            "disponibles" => $disponiblesPorTipo[$tipo] ?? 0,
+            "disponibles" => $disp,
             "porcentaje" => $totalRespuestas > 0 ? round(($correctas / $totalRespuestas) * 100) : 0
         ];
     }
- 
+
+    $porcentajeProgreso = $totalDisponibles > 0 ? (int) round(($totalExamenes / $totalDisponibles) * 100) : 0;
+
     $stmtActividad = $db->prepare(
         "SELECT i.id_intento, pr.titulo, i.fecha_fin, i.porcentaje
          FROM intentos i
@@ -115,6 +121,7 @@ try {
         "correo" => $usuario['correo'],
         "totalExamenes" => $totalExamenes,
         "promedio" => $promedio,
+        "porcentajeProgreso" => $porcentajeProgreso,
         "skills" => $skills,
         "actividad" => $actividad
     ]);
