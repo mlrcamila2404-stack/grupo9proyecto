@@ -111,7 +111,7 @@ VALUES (@id_prueba_reading1, 'Part 1: Incomplete Sentences', 'reading', 1);
 SET @id_seccion_r1 = LAST_INSERT_ID();
  
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, orden)
-VALUES (@id_seccion_r1, 'audio', 'wasa.mp3', 1);
+VALUES (@id_seccion_r1, 'imagen', 'wasa.mp3', 1);
 SET @id_recurso_r1 = LAST_INSERT_ID();
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)

@@ -26,16 +26,19 @@ async function loadReview() {
 
     detalles.forEach((item, index) => {
       const isCorrect = item.respuesta_usuario === item.respuesta_correcta;
-      const correctText = correctas[item.id_pregunta] || 'Not available';
+      const userAnswer = item.respuesta_usuario || 'No answer selected';
+      const correctAnswer = item.respuesta_correcta || 'N/A';
 
       const card = document.createElement('div');
       card.className = `review-card ${isCorrect ? 'correct' : 'wrong'} reveal`;
       card.style.animationDelay = (index * 0.05) + 's';
 
       let mediaHtml = '';
+      const isReadingSection = item.seccion_titulo && item.seccion_titulo.toLowerCase().includes('reading');
+
       if (item.tipo_recurso === 'imagen') {
         mediaHtml = `<img src="img/${item.recurso_archivo}" class="review-media" alt="Resource">`;
-      } else if (item.tipo_recurso === 'audio') {
+      } else if (item.tipo_recurso === 'audio' && !isReadingSection) {
         mediaHtml = `<audio controls class="w-100 mb-3"><source src="audios/${item.recurso_archivo}" type="audio/mpeg"></audio>`;
       }
 
@@ -49,11 +52,11 @@ async function loadReview() {
         ${mediaHtml}
         <p class="mb-3">${item.texto_pregunta || 'Choose the best option'}</p>
         <div class="answer-box user-answer">
-          <strong>Your Answer:</strong> ${item.user_option_text || 'No answer selected'}
+          <strong>Your Answer:</strong> ${userAnswer}
         </div>
         ${!isCorrect ? `
         <div class="answer-box correct-answer">
-          <strong>Correct Answer:</strong> ${correctText}
+          <strong>Correct Answer:</strong> ${correctAnswer}
         </div>
         ` : ''}
       `;
