@@ -49,7 +49,7 @@ CREATE TABLE recursos (
 
 CREATE TABLE preguntas (
     id_pregunta INT AUTO_INCREMENT PRIMARY KEY,
-    id_recurso INT NOT NULL,
+    id_recurso INT NULL,
     numero_pregunta INT NOT NULL,
     texto_pregunta VARCHAR(225) NULL,
     respuesta_correcta ENUM('A', 'B', 'C', 'D') NOT NULL,
@@ -110,12 +110,8 @@ INSERT INTO secciones (id_prueba, titulo, tipo, orden)
 VALUES (@id_prueba_reading1, 'Part 1: Incomplete Sentences', 'reading', 1);
 SET @id_seccion_r1 = LAST_INSERT_ID();
  
-INSERT INTO recursos (id_seccion, tipo_recurso, archivo, orden)
-VALUES (@id_seccion_r1, 'imagen', 'wasa.mp3', 1);
-SET @id_recurso_r1 = LAST_INSERT_ID();
-
 INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso_r1, 1, 'The manager ______ the report before the meeting.', 'A');
+VALUES (NULL, 1, 'The manager ______ the report before the meeting.', 'A');
 SET @q1 = LAST_INSERT_ID();
  
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -124,7 +120,7 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@q1, 'C', 'reviewing');
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso_r1, 2, 'The new policy will ______ next month.', 'A');
+VALUES (NULL, 2, 'The new policy will ______ next month.', 'A');
 SET @q2 = LAST_INSERT_ID();
  
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -133,7 +129,7 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@q2, 'C', 'took effect');
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso_r1, 3, 'The company is known ______ its excellent customer service.', 'A');
+VALUES (NULL, 3, 'The company is known ______ its excellent customer service.', 'A');
 SET @q3 = LAST_INSERT_ID();
  
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -142,7 +138,7 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@q3, 'C', 'about');
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso_r1, 4, 'Please submit your application ______ Friday.', 'A');
+VALUES (NULL, 4, 'Please submit your application ______ Friday.', 'A');
 SET @q4 = LAST_INSERT_ID();
  
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -151,7 +147,7 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@q4, 'C', 'on');
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso_r1, 5, 'The project was delayed ______ the lack of resources.', 'B');
+VALUES (NULL, 5, 'The project was delayed ______ the lack of resources.', 'B');
 SET @q5 = LAST_INSERT_ID();
  
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
