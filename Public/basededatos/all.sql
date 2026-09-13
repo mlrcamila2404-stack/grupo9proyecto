@@ -260,8 +260,8 @@ VALUES (@id_seccion, 'audio', 'question.mp3', 'Audio for all Part 2 questions', 
 
 SET @id_recurso = LAST_INSERT_ID();
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso, 1, 'You were engaged when you bought the car, right?', 'A');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@id_recurso, 1, 'A');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -269,8 +269,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@id_pregunta, 'B', "No, my fiancé can't drive."),
 (@id_pregunta, 'C', 'We bought the car in March.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso, 2, "Haven't you resolved that problem yet?", 'A');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@id_recurso, 2, 'A');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -278,8 +278,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@id_pregunta, 'B', 'We have both letters.'),
 (@id_pregunta, 'C', 'You have my assurance.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso, 3, "Aren't pop-up ads on the Internet just a fad?", 'A');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@id_recurso, 3, 'A');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -287,8 +287,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@id_pregunta, 'B', 'I put up with a lot.'),
 (@id_pregunta, 'C', "She's not fat.");
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@id_recurso, 4, 'Was the customer satisfied with our work?', 'B');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@id_recurso, 4, 'B');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -310,8 +310,8 @@ INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
 VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 1', 1);
 SET @rec1 = LAST_INSERT_ID();
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec1, 1, 'What problem do the speakers have with the computer company?', 'C');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec1, 1, 'C');
 SET @p1_1 = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -320,8 +320,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p1_1, 'C', 'It sends incorrect bills.'),
 (@p1_1, 'D', 'It charges them for extra spare parts.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec1, 2, 'When will the contract run out?', 'A');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec1, 2, 'A');
 SET @p1_2 = LAST_INSERT_ID();
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p1_2, 'A', 'In two months.'),
@@ -329,8 +329,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p1_2, 'C', 'In one year.'),
 (@p1_2, 'D', 'In four years.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec1, 3, 'What does the woman suggest doing?', 'D');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec1, 3, 'D');
 SET @p1_3 = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -345,8 +345,8 @@ VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 2', 2);
 SET @rec2 = LAST_INSERT_ID();
 -- === FIN FIX ===
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec2, 1, 'Why does the store need to be more competitive?', 'C');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec2, 1, 'C');
 SET @p2_1 = LAST_INSERT_ID();
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p2_1, 'A', 'There''s currently a recession.'),
@@ -354,8 +354,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p2_1, 'C', 'There''s a new competitor nearby.'),
 (@p2_1, 'D', 'New employees have little experience.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec2, 2, 'How will the store attract more customers?', 'D');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec2, 2, 'D');
 SET @p2_2 = LAST_INSERT_ID();
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p2_2, 'A', 'By giving them trial products.'),
@@ -363,8 +363,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p2_2, 'C', 'By selling new products.'),
 (@p2_2, 'D', 'By featuring happy customers in ads.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec2, 3, 'Who will the woman call?', 'A');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec2, 3, 'A');
 SET @p2_3 = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -379,8 +379,8 @@ VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 3', 3);
 SET @rec3 = LAST_INSERT_ID();
 -- === FIN FIX ===
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec3, 1, 'How long is the basic warranty effective?', 'C');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec3, 1, 'C');
 SET @p3_1 = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -389,8 +389,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p3_1, 'C', 'One year.'),
 (@p3_1, 'D', 'Two years.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec3, 2, 'What will happen if the woman uses an unapproved mechanic?', 'B');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec3, 2, 'B');
 SET @p3_2 = LAST_INSERT_ID();
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p3_2, 'A', 'There are no consequences.'),
@@ -398,8 +398,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p3_2, 'C', 'Protection is decreased by 50%.'),
 (@p3_2, 'D', 'She will have full coverage.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec3, 3, 'What does the woman decide to do?', 'A');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec3, 3, 'A');
 SET @p3_3 = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -412,8 +412,8 @@ INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
 VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 4', 4);
 SET @rec4 = LAST_INSERT_ID();
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec4, 1, 'How do the speakers feel about Alexa''s business plan?', 'D');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec4, 1, 'D');
 SET @p4_1 = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -422,8 +422,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p4_1, 'C', 'She has made many obvious mistakes.'),
 (@p4_1, 'D', 'She is serious-minded and cautious.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec4, 2, 'How will the man help Alexa?', 'A');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec4, 2, 'A');
 SET @p4_2 = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
@@ -432,8 +432,8 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p4_2, 'C', 'By pointing out her mistakes.'),
 (@p4_2, 'D', 'By nominating her for an award.');
 
-INSERT INTO preguntas (id_recurso, numero_pregunta, texto_pregunta, respuesta_correcta)
-VALUES (@rec4, 3, 'According to the man, what is the most important strategy for success?', 'B');
+INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
+VALUES (@rec4, 3, 'B');
 SET @p4_3 = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
