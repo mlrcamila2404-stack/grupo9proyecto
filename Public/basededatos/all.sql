@@ -1,4 +1,4 @@
-CREATE DATABASE practify;
+﻿CREATE DATABASE practify;
 
 USE practify;
 
@@ -49,12 +49,15 @@ CREATE TABLE recursos (
 
 CREATE TABLE preguntas (
     id_pregunta INT AUTO_INCREMENT PRIMARY KEY,
+    id_seccion INT NULL,
     id_recurso INT NULL,
     numero_pregunta INT NOT NULL,
     texto_pregunta VARCHAR(225) NULL,
     respuesta_correcta ENUM('A', 'B', 'C', 'D') NOT NULL,
     retroalimentacion TEXT NULL,
 
+    FOREIGN KEY (id_seccion)
+        REFERENCES secciones(id_seccion),
     FOREIGN KEY (id_recurso)
         REFERENCES recursos(id_recurso)
 );
@@ -168,7 +171,7 @@ VALUES (@id_prueba, 'Part 1: Photos', 'listening', 'Look at the images and choos
 SET @id_seccion = LAST_INSERT_ID();
 
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
-VALUES (@id_seccion, 'audio', 'audios/wasa.mp3', 'Audio de práctica 1', 6);
+VALUES (@id_seccion, 'audio', 'audios/wasa.mp3', 'Audio de prÃ¡ctica 1', 6);
 SET @id_recurso = LAST_INSERT_ID();
 
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
@@ -262,7 +265,7 @@ SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@id_pregunta, 'A', "Yes, it's in the cage by the cart."),
-(@id_pregunta, 'B', "No, my fiancé can't drive."),
+(@id_pregunta, 'B', "No, my fiancÃ© can't drive."),
 (@id_pregunta, 'C', 'We bought the car in March.');
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
@@ -704,3 +707,10 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p15, 'D', 'occasionally');
 
 SELECT @id_prueba_r3 AS id_prueba_reading3;
+
+-- Fix missing section IDs for questions
+UPDATE preguntas p JOIN recursos r ON p.id_recurso = r.id_recurso SET p.id_seccion = r.id_seccion;
+
+-- Specifically fix Reading 1 questions that have no resource
+UPDATE preguntas SET id_seccion = (SELECT id_seccion FROM secciones WHERE titulo = 'Part 1: Incomplete Sentences' LIMIT 1) WHERE id_recurso IS NULL;
+

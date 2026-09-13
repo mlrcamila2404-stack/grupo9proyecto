@@ -45,8 +45,8 @@ try {
             r.tipo_recurso,
             ot.texto_opcion as user_option_text
         FROM preguntas p
-        JOIN recursos r ON p.id_recurso = r.id_recurso
-        JOIN secciones s ON r.id_seccion = s.id_seccion
+        LEFT JOIN recursos r ON p.id_recurso = r.id_recurso
+        JOIN secciones s ON (r.id_seccion = s.id_seccion OR (r.id_seccion IS NULL AND p.id_seccion = s.id_seccion))
         LEFT JOIN respuestas_usuario ru ON (ru.id_pregunta = p.id_pregunta AND ru.id_intento = ?)
         LEFT JOIN opciones_texto ot ON (ot.id_pregunta = p.id_pregunta AND ot.letra = ru.respuesta_usuario)
         WHERE s.id_prueba = ?
