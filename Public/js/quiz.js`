@@ -1,15 +1,6 @@
 let quizTimerInterval = null;
-let currentQuizId = null;
 
-const TIME_LIMITS = {
-  '1': 7 * 60,   // Practice 1: 7 min
-  '5': 10 * 60,  // Practice 2: 10 min
-  '6': 15 * 60,  // Practice 3: 15 min
-  'default': 30 * 60 // Others: 30 min
-};
-
-function inicializarQuiz(idPrueba) {
-  currentQuizId = idPrueba;
+function inicializarQuiz() {
   const cards = document.querySelectorAll('.question-card');
   const groups = new Set();
 
@@ -113,41 +104,23 @@ function inicializarQuiz(idPrueba) {
     finalizeBtn.textContent = 'Next Part';
   }
 
-  startQuizTimer(idPrueba);
+  startQuizTimer();
 }
 
-function startQuizTimer(idPrueba) {
+function startQuizTimer() {
   const timerEl = document.getElementById('quizTimer');
   if (!timerEl) return;
-
-  const limitSeconds = TIME_LIMITS[idPrueba] || TIME_LIMITS['default'];
 
   const updateTimerDisplay = () => {
     const startTime = parseInt(sessionStorage.getItem('practifyStartTime') || Date.now().toString(), 10);
     const now = Date.now();
-    const elapsedSeconds = Math.floor((now - startTime) / 1000);
-    const timeLeft = limitSeconds - elapsedSeconds;
+    const elapsedMs = now - startTime;
 
-    if (timeLeft <= 0) {
-      clearInterval(quizTimerInterval);
-      timerEl.textContent = `Time: 00:00`;
-      timerEl.classList.add('warning');
-
-      // Auto-submit the exam
-      if (idPrueba) {
-        finalizarPrueba(idPrueba);
-      }
-      return;
-    }
-
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
+    const totalSeconds = Math.floor(elapsedMs / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
 
     timerEl.textContent = `Time: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-    if (timeLeft <= 60) {
-      timerEl.classList.add('warning');
-    }
   };
 
   updateTimerDisplay();
@@ -227,7 +200,7 @@ async function cargarPreguntas(idPrueba, contenedorId) {
 
     tarjetasConAudio.forEach((card) => audioObserver.observe(card));
 
-    inicializarQuiz(idPrueba);
+    inicializarQuiz();
 
   } catch (error) {
     console.error('Error al cargar preguntas:', error);

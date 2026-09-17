@@ -26,9 +26,10 @@ try {
     $db->beginTransaction();
 
     $stmtIntento = $db->prepare(
-        "INSERT INTO intentos (id_usuario, id_prueba, fecha_inicio, fecha_fin) VALUES (?, ?, NOW(), NOW())"
+        "INSERT INTO intentos (id_usuario, id_prueba, fecha_inicio, fecha_fin) VALUES (?, ?, DATE_SUB(NOW(), INTERVAL ? SECOND), NOW())"
     );
-    $stmtIntento->execute([$_SESSION['id_usuario'], $id_prueba]);
+    $elapsedSeconds = isset($data['tiempo']) ? floor($data['tiempo'] / 1000) : 0;
+    $stmtIntento->execute([$_SESSION['id_usuario'], $id_prueba, $elapsedSeconds]);
     $id_intento = $db->lastInsertId();
 
     $correctas = 0;

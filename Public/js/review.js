@@ -21,6 +21,22 @@ async function loadReview() {
     document.getElementById('examTitle').textContent = intento.prueba_titulo;
     document.getElementById('finalScore').textContent = intento.porcentaje + '%';
 
+    // Calculate and display time spent
+    if (intento.fecha_inicio && intento.fecha_fin) {
+      const start = new Date(intento.fecha_inicio).getTime();
+      const end = new Date(intento.fecha_fin).getTime();
+      const diffMs = end - start;
+
+      const totalSeconds = Math.floor(diffMs / 1000);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+
+      document.getElementById('timeSpent').textContent =
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    } else {
+      document.getElementById('timeSpent').textContent = '--:--';
+    }
+
     const listEl = document.getElementById('reviewList');
     listEl.innerHTML = '';
 

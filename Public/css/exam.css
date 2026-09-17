@@ -68,6 +68,37 @@ body {
   margin-bottom: 40px;
 }
 
+.timer-badge {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--blue);
+  border-radius: 100px;
+  padding: 10px 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  box-shadow: 0 10px 25px var(--shadow);
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.timer-badge.warning {
+  border-color: #E74C3C;
+  color: #E74C3C;
+  animation: pulse-timer 1s infinite;
+}
+
+@keyframes pulse-timer {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+
 .exam-header h1 {
   font-weight: 800;
   font-size: 3rem;
