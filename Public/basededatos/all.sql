@@ -708,3 +708,11 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 
 SELECT @id_prueba_r3 AS id_prueba_reading3;
 
+
+
+-- FIX: Vincular preguntas a sus secciones para que aparezcan en la web
+UPDATE preguntas p JOIN recursos r ON p.id_recurso = r.id_recurso SET p.id_seccion = r.id_seccion;
+
+-- FIX: Vincular específicamente las preguntas de Reading 1 que no tienen recurso
+UPDATE preguntas SET id_seccion = (SELECT id_seccion FROM secciones WHERE titulo = 'Part 1: Incomplete Sentences' LIMIT 1) WHERE id_recurso IS NULL;
+
