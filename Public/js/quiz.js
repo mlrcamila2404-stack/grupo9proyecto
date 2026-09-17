@@ -8,6 +8,28 @@ const TIME_LIMITS = {
   'default': 30 * 60 // Others: 30 min
 };
 
+async function calculateTotalAudioDuration() {
+  const audios = document.querySelectorAll('audio');
+  let totalDuration = 0;
+
+  const durationPromises = Array.from(audios).map(audio => {
+    return new Promise((resolve) => {
+      if (audio.readyState >= 1) {
+        resolve(audio.duration || 0);
+      } else {
+        audio.addEventListener('loadedmetadata', () => resolve(audio.duration || 0), { once: true });
+        // Timeout to avoid hanging if audio fails to load
+        setTimeout(() => resolve(0), 2000);
+      }
+    });
+  });
+
+  const durations = await Promise.all(durationPromises);
+  totalDuration = durations.reduce((acc, curr) => acc + curr, 0);
+
+  return Math.floor(totalDuration) + 60; // Audio duration + 1 minute
+}
+
 function inicializarQuiz(idPrueba) {
   currentQuizId = idPrueba;
   const cards = document.querySelectorAll('.question-card');
@@ -113,27 +135,38 @@ function inicializarQuiz(idPrueba) {
     finalizeBtn.textContent = 'Next Part';
   }
 
-  startQuizTimer(idPrueba);
+  // Async timer start to allow audio duration calculation
+  (async () => {
+    let limit = TIME_LIMITS[idPrueba] || TIME_LIMITS['default'];
+
+    // If there are audio elements, use audio duration + 1 min
+    const audios = document.querySelectorAll('audio');
+    if (audios.length > 0) {
+      limit = await calculateTotalAudioDuration();
+    }
+
+    startQuizTimer(idPrueba, limit);
+  })();
 }
 
-function startQuizTimer(idPrueba) {
+function startQuizTimer(idPrueba, limitSeconds) {
   const timerEl = document.getElementById('quizTimer');
   if (!timerEl) return;
 
-  const limitSeconds = TIME_LIMITS[idPrueba] || TIME_LIMITS['default'];
+  // Use provided limit, or fallback to TIME_LIMITS
+  const finalLimit = limitSeconds || TIME_LIMITS[idPrueba] || TIME_LIMITS['default'];
 
   const updateTimerDisplay = () => {
     const startTime = parseInt(sessionStorage.getItem('practifyStartTime') || Date.now().toString(), 10);
     const now = Date.now();
     const elapsedSeconds = Math.floor((now - startTime) / 1000);
-    const timeLeft = limitSeconds - elapsedSeconds;
+    const timeLeft = finalLimit - elapsedSeconds;
 
     if (timeLeft <= 0) {
       clearInterval(quizTimerInterval);
       timerEl.textContent = `Time: 00:00`;
       timerEl.classList.add('warning');
 
-      // Auto-submit the exam
       if (idPrueba) {
         finalizarPrueba(idPrueba);
       }
