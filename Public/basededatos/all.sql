@@ -183,10 +183,10 @@ VALUES (@id_recurso, 1, 'B');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', 'The signers are having a party.'),
-(@id_pregunta, 'B', 'The men are signing an agreement.'),
-(@id_pregunta, 'C', 'The provisions are in the cabinet.'),
-(@id_pregunta, 'D', 'The cancelled flight is on the tarmac.');
+(@id_pregunta, 'A', 'A'),
+(@id_pregunta, 'B', 'B'),
+(@id_pregunta, 'C', 'C'),
+(@id_pregunta, 'D', 'D');
 
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
 VALUES (@id_seccion, 'imagen', 'Track2.png', 'Photo question 2', 2);
@@ -197,10 +197,10 @@ VALUES (@id_recurso, 2, 'C');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', 'The clerk is competing with others.'),
-(@id_pregunta, 'B', 'The shoppers are comparing prices.'),
-(@id_pregunta, 'C', 'The man is not attracting a crowd.'),
-(@id_pregunta, 'D', 'The consumer is convincing the sales person.');
+(@id_pregunta, 'A', 'A'),
+(@id_pregunta, 'B', 'B'),
+(@id_pregunta, 'C', 'C'),
+(@id_pregunta, 'D', 'D');
 
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
 VALUES (@id_seccion, 'imagen', 'Track3.png', 'Photo question 3', 3);
@@ -211,10 +211,10 @@ VALUES (@id_recurso, 3, 'C');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', "They're considering purchasing the bag."),
-(@id_pregunta, 'B', "They're protecting their dog."),
-(@id_pregunta, 'C', "They're covering the carpet."),
-(@id_pregunta, 'D', "They're checking the expiration date.");
+(@id_pregunta, 'A', "A"),
+(@id_pregunta, 'B', "B"),
+(@id_pregunta, 'C', "C"),
+(@id_pregunta, 'D', "D");
 
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
 VALUES (@id_seccion, 'imagen', 'Track4.png', 'Photo question 4', 4);
@@ -225,10 +225,10 @@ VALUES (@id_recurso, 4, 'A');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', 'The managers are planning a strategy.'),
-(@id_pregunta, 'B', 'The president is dressing for dinner.'),
-(@id_pregunta, 'C', 'The primary shape is round.'),
-(@id_pregunta, 'D', 'The demonstrators are avoiding the meeting.');
+(@id_pregunta, 'A', 'A'),
+(@id_pregunta, 'B', 'B'),
+(@id_pregunta, 'C', 'C'),
+(@id_pregunta, 'D', 'D');
 
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
 VALUES (@id_seccion, 'imagen', 'Track5.png', 'Photo question 5', 5);
@@ -239,10 +239,10 @@ VALUES (@id_recurso, 5, 'D');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', 'The attendees are registering at the desk.'),
-(@id_pregunta, 'B', 'The organizers are selecting a podium.'),
-(@id_pregunta, 'C', 'The banquet room is overcrowded.'),
-(@id_pregunta, 'D', 'The participants are attending a session.');
+(@id_pregunta, 'A', 'A'),
+(@id_pregunta, 'B', 'B'),
+(@id_pregunta, 'C', 'C'),
+(@id_pregunta, 'D', 'D');
 
 INSERT INTO pruebas (titulo, descripcion, tiempo_minutos, activa)
 VALUES ('Listening 2', 'Practice test: Question-Response', 15, TRUE);
@@ -264,36 +264,36 @@ VALUES (@id_recurso, 1, 'A');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', "Yes, it's in the cage by the cart."),
-(@id_pregunta, 'B', "No, my fiancÃ© can't drive."),
-(@id_pregunta, 'C', 'We bought the car in March.');
+(@id_pregunta, 'A', "A"),
+(@id_pregunta, 'B', "B"),
+(@id_pregunta, 'C', "C");
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
 VALUES (@id_recurso, 2, 'A');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', "We're working on it."),
-(@id_pregunta, 'B', 'We have both letters.'),
-(@id_pregunta, 'C', 'You have my assurance.');
+(@id_pregunta, 'A', "A"),
+(@id_pregunta, 'B', "B"),
+(@id_pregunta, 'C', "C");
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
 VALUES (@id_recurso, 3, 'A');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', "No, they're here to stay."),
-(@id_pregunta, 'B', 'I put up with a lot.'),
-(@id_pregunta, 'C', "She's not fat.");
+(@id_pregunta, 'A', "A"),
+(@id_pregunta, 'B', "B"),
+(@id_pregunta, 'C', "C");
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
 VALUES (@id_recurso, 4, 'B');
 SET @id_pregunta = LAST_INSERT_ID();
 
 INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
-(@id_pregunta, 'A', 'Satisfaction is guaranteed.'),
-(@id_pregunta, 'B', 'Very.'),
-(@id_pregunta, 'C', 'I found a new customer today.');
+(@id_pregunta, 'A', 'A'),
+(@id_pregunta, 'B', 'B'),
+(@id_pregunta, 'C', 'C');
 
 USE practify;
 
