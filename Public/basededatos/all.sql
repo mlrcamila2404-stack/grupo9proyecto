@@ -306,7 +306,7 @@ VALUES (@id_prueba_l3, 'Part 3: Conversation', 'listening', 'Listen to the audio
 SET @id_seccion_l3 = LAST_INSERT_ID();
 
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
-VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 1', 1);
+VALUES (@id_seccion_l3, 'audio', 'conversations.mp3', 'Conversation 1', 1);
 SET @rec1 = LAST_INSERT_ID();
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
@@ -338,11 +338,11 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p1_3, 'C', 'Renewing the contract.'),
 (@p1_3, 'D', 'Waiting until the contract runs out.');
 
--- === FIX: faltaba crear el recurso de la Conversation 2 antes de sus preguntas ===
+
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
 VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 2', 2);
 SET @rec2 = LAST_INSERT_ID();
--- === FIN FIX ===
+
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
 VALUES (@rec2, 1, 'C');
@@ -372,11 +372,11 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 (@p2_3, 'C', 'A customer.'),
 (@p2_3, 'D', 'A marketing executive.');
 
--- === FIX: faltaba crear el recurso de la Conversation 3 antes de sus preguntas ===
+
 INSERT INTO recursos (id_seccion, tipo_recurso, archivo, descripcion, orden)
 VALUES (@id_seccion_l3, 'audio', 'conversation.mp3', 'Conversation 3', 3);
 SET @rec3 = LAST_INSERT_ID();
--- === FIN FIX ===
+
 
 INSERT INTO preguntas (id_recurso, numero_pregunta, respuesta_correcta)
 VALUES (@rec3, 1, 'C');
@@ -710,9 +710,8 @@ SELECT @id_prueba_r3 AS id_prueba_reading3;
 
 
 
--- FIX: Vincular preguntas a sus secciones para que aparezcan en la web
 UPDATE preguntas p JOIN recursos r ON p.id_recurso = r.id_recurso SET p.id_seccion = r.id_seccion;
 
--- FIX: Vincular específicamente las preguntas de Reading 1 que no tienen recurso
+
 UPDATE preguntas SET id_seccion = (SELECT id_seccion FROM secciones WHERE titulo = 'Part 1: Incomplete Sentences' LIMIT 1) WHERE id_recurso IS NULL;
 
