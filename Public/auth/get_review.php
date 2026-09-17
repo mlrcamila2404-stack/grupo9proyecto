@@ -60,8 +60,8 @@ try {
         SELECT p.id_pregunta, ot.texto_opcion
         FROM preguntas p
         JOIN opciones_texto ot ON (ot.id_pregunta = p.id_pregunta AND ot.letra = p.respuesta_correcta)
-        JOIN recursos r ON p.id_recurso = r.id_recurso
-        JOIN secciones s ON r.id_seccion = s.id_seccion
+        LEFT JOIN recursos r ON p.id_recurso = r.id_recurso
+        JOIN secciones s ON (r.id_seccion = s.id_seccion OR (r.id_seccion IS NULL AND p.id_seccion = s.id_seccion))
         WHERE s.id_prueba = ?
     ");
     $stmtCorrects->execute([$id_prueba]);

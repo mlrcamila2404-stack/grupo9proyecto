@@ -47,7 +47,6 @@ body {
   font-weight: 800;
   font-size: 1.3rem;
   text-decoration: none;
-  color: var(--ink) !important;
 }
 
 #navSlider {
@@ -82,8 +81,8 @@ body {
   color: var(--white) !important;
 }
 
-.w-blue { color: var(--blue); }
-.w-purple { color: var(--purple); }
+.w-blue { color: var(--blue) !important; }
+.w-purple { color: var(--purple) !important; }
 
 .reveal {
   opacity: 0;

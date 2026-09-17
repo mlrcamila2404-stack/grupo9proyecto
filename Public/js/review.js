@@ -26,8 +26,8 @@ async function loadReview() {
 
     detalles.forEach((item, index) => {
       const isCorrect = item.respuesta_usuario === item.respuesta_correcta;
-      const userAnswer = item.respuesta_usuario || 'No answer selected';
-      const correctAnswer = item.respuesta_correcta || 'N/A';
+      const userAnswerText = item.user_option_text || (item.respuesta_usuario ? `Option ${item.respuesta_usuario}` : 'No answer selected');
+      const correctAnswerText = correctas[item.id_pregunta] || (item.respuesta_correcta ? `Option ${item.respuesta_correcta}` : 'N/A');
 
       const card = document.createElement('div');
       card.className = `review-card ${isCorrect ? 'correct' : 'wrong'} reveal`;
@@ -39,7 +39,13 @@ async function loadReview() {
       if (item.tipo_recurso === 'imagen') {
         mediaHtml = `<img src="img/${item.recurso_archivo}" class="review-media" alt="Resource">`;
       } else if (item.tipo_recurso === 'audio' && !isReadingSection) {
-        mediaHtml = `<audio controls class="w-100 mb-3"><source src="audios/${item.recurso_archivo}" type="audio/mpeg"></audio>`;
+        mediaHtml = `
+          <div class="audio-review-container mb-3">
+            <label class="small fw-bold text-muted mb-1 d-block"><i class="fa-solid fa-volume-high me-1"></i> Listen again:</label>
+            <audio controls class="w-100">
+              <source src="audios/${item.recurso_archivo}" type="audio/mpeg">
+            </audio>
+          </div>`;
       }
 
       card.innerHTML = `
@@ -52,11 +58,11 @@ async function loadReview() {
         ${mediaHtml}
         <p class="mb-3">${item.texto_pregunta || 'Choose the best option'}</p>
         <div class="answer-box user-answer">
-          <strong>Your Answer:</strong> ${userAnswer}
+          <strong class="me-2">Your Answer:</strong> ${userAnswerText}
         </div>
         ${!isCorrect ? `
         <div class="answer-box correct-answer">
-          <strong>Correct Answer:</strong> ${correctAnswer}
+          <strong class="me-2">Correct Answer:</strong> ${correctAnswerText}
         </div>
         ` : ''}
       `;

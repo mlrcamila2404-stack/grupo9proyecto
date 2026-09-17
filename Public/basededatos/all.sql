@@ -708,9 +708,3 @@ INSERT INTO opciones_texto (id_pregunta, letra, texto_opcion) VALUES
 
 SELECT @id_prueba_r3 AS id_prueba_reading3;
 
--- Fix missing section IDs for questions
-UPDATE preguntas p JOIN recursos r ON p.id_recurso = r.id_recurso SET p.id_seccion = r.id_seccion;
-
--- Specifically fix Reading 1 questions that have no resource
-UPDATE preguntas SET id_seccion = (SELECT id_seccion FROM secciones WHERE titulo = 'Part 1: Incomplete Sentences' LIMIT 1) WHERE id_recurso IS NULL;
-
