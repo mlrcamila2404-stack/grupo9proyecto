@@ -2,10 +2,10 @@ let quizTimerInterval = null;
 let currentQuizId = null;
 
 const TIME_LIMITS = {
-  '1': 7 * 60,   // Practice 1: 7 min
-  '5': 10 * 60,  // Practice 2: 10 min
-  '6': 15 * 60,  // Practice 3: 15 min
-  'default': 30 * 60 // Others: 30 min
+  '1': 7 * 60,  
+  '5': 10 * 60,  
+  '6': 15 * 60,  
+  'default': 30 * 60 
 };
 
 async function calculateTotalAudioDuration() {

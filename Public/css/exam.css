@@ -36,7 +36,7 @@ body {
 .exam-blob-a {
   width: 400px;
   height: 400px;
-  left: -10%;
+  left: -25%;
   top: 10%;
   background: var(--blue);
   animation: blobDrift 18s ease-in-out infinite;
@@ -45,7 +45,7 @@ body {
 .exam-blob-b {
   width: 350px;
   height: 350px;
-  right: -5%;
+  right: -25%;
   bottom: 10%;
   background: var(--purple);
   animation: blobDrift 22s ease-in-out infinite reverse;
